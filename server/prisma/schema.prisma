@@ -10,6 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Activity {
+  id      String   @id @default(cuid())
+  created DateTime @default(now())
+  type    String
+
+  // Foreign Keys & References
+  TimeEntry      TimeEntry[]
+  Category       Category    @relation(fields: [fk_category_id], references: [id])
+  fk_category_id String
+}
+
 model Campus {
   id      String   @id @default(cuid())
   created DateTime @default(now())
@@ -30,6 +41,17 @@ model CampusType {
   Campus Campus[]
 }
 
+model Category {
+  id      String   @id @default(cuid())
+  created DateTime @default(now())
+  name    String
+
+  // Foreign Keys & References
+  Activity          Activity[]
+  SubCategory       SubCategory? @relation(fields: [fk_subcategory_id], references: [id])
+  fk_subcategory_id String?
+}
+
 model Counselor {
   id      String   @id @default(cuid())
   created DateTime @default(now())
@@ -39,6 +61,15 @@ model Counselor {
   // Foreign Keys & References
   Campus       Campus @relation(fields: [fk_campus_id], references: [id])
   fk_campus_id String
+}
+
+model SubCategory {
+  id      String   @id @default(cuid())
+  created DateTime @default(now())
+  name    String
+
+  // Foreign Keys & References
+  Category Category[]
 }
 
 model TimeEntry {
@@ -54,35 +85,4 @@ model TimeEntry {
   // Foreign Keys & References
   Activity       Activity @relation(fields: [fk_activity_id], references: [id])
   fk_activity_id String
-}
-
-model Activity {
-  id      String   @id @default(cuid())
-  created DateTime @default(now())
-  type    String
-
-  // Foreign Keys & References
-  TimeEntry      TimeEntry[]
-  Category       Category    @relation(fields: [fk_category_id], references: [id])
-  fk_category_id String
-}
-
-model Category {
-  id      String   @id @default(cuid())
-  created DateTime @default(now())
-  name    String
-
-  // Foreign Keys & References
-  Activity          Activity[]
-  SubCategory       SubCategory @relation(fields: [fk_subcategory_id], references: [id])
-  fk_subcategory_id String
-}
-
-model SubCategory {
-  id      String   @id @default(cuid())
-  created DateTime @default(now())
-  name    String
-
-  // Foreign Keys & References
-  Category Category[]
 }
