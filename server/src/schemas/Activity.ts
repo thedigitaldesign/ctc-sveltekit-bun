@@ -19,6 +19,10 @@ export const Activity = `
     category: Category!
     fk_category_id: String!
   }
+
+  type Mutation {
+    create_activity(type: String!): ActivityPayload!
+  }
 `
 
 // export const Activity = `

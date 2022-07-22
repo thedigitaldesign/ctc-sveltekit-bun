@@ -1,14 +1,12 @@
-export const CreateActivity = `
-  type mutation {
-    ActivityCreate(type: String!): ActivityPayload
-  }
+import { Context } from '../../context'
+import { Activity } from '../../models'
 
-  type Error { 
-    message: String!
+export const CreateActivity = {
+  create_activity: async (_: any, { type }: Activity, { prisma }: Context) => {
+    prisma.activity.create({
+      data: {
+        type
+      }
+    })
   }
-
-  type ActivityPayload {
-    errors: [Error!]!
-    activity: Activity
-  }
-`
+}

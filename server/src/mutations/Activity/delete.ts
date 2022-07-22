@@ -1,3 +1,5 @@
-export const DeleteActivity = `
+import { Context } from "../../context";
 
-`
+export const DeleteActivity = {
+  
+}
