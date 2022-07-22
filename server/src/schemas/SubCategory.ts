@@ -10,7 +10,9 @@
 */
 
 export const SubCategory = `
-  id: ID!
-  created: String!
-  name: String!
+  type SubCategory {
+    id: ID!
+    created: String!
+    name: String!
+  }
 `

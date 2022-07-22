@@ -1,3 +1,3 @@
-export const Counselor = {
-  hello: () => 'World!'
+export const ResolverCounselor = {
+
 }

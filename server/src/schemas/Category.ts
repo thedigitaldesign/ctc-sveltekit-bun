@@ -12,9 +12,11 @@
 */
 
 export const Category = `
-  id: ID!
-  created: String!
-  name: String!
-  sub_category: SubCategory
-  fk_subcategory_id: String
+  type Category {
+    id: ID!
+    created: String!
+    name: String!
+    sub_category: SubCategory
+    fk_subcategory_id: String
+  }
 `

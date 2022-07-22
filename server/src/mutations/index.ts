@@ -1,5 +1,3 @@
-export * from './Query'
-
 export * from './Activity'
 export * from './Campus'
 export * from './CampusType'

@@ -1,4 +1,4 @@
-export const Create = `
+export const CreateActivity = `
   type mutation {
     ActivityCreate(type: String!): ActivityPayload
   }

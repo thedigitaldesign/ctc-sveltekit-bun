@@ -1,3 +1,3 @@
-export const SubCategory = {
-  hello: () => 'World!'
+export const ResolverSubCategory = {
+
 }

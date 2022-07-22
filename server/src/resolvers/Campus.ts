@@ -1,3 +1,3 @@
-export const Campus = {
-  hello: () => 'World!'
+export const ResolverCampus = {
+
 }

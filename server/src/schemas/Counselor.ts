@@ -12,10 +12,11 @@
 */
 
 export const Counselor = `
-  id: ID!
-  created: String!
-  name: String!
-  email: String!
-  campus: [Campus!]!
-  fk_campus_id: String!
+  type Counselor {
+    id: ID!
+    name: String!
+    email: String!
+    campus: [Campus!]!
+    fk_campus_id: String!
+  }
 `

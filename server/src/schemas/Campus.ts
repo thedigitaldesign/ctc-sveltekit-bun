@@ -12,9 +12,11 @@
 */
 
 export const Campus = `
-  id: ID!
-  created: String!
-  name: String!
-  campus_type: CampusType!
-  fk_campustype_id: String!
+  type Campus {
+    id: ID!
+    created: String!
+    name: String!
+    campus_type: CampusType!
+    fk_campustype_id: String!
+  }
 `

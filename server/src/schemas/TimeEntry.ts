@@ -16,11 +16,13 @@
 */
 
 export const TimeEntry = `
-  id: ID!
-  created: String!
-  description: String!
-  start_time: String!
-  end_time: String!
-  activity: Activity!
-  fk_activity_id: String!
+  type TimeEntry {
+    id: ID!
+    created: String!
+    description: String!
+    start_time: String!
+    end_time: String!
+    activity: Activity!
+    fk_activity_id: String!
+  }
 `

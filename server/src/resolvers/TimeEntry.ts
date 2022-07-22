@@ -1,3 +1,3 @@
-export const TimeEntry = {
-  hello: () => 'World!'
+export const ResolverTimeEntry = {
+
 }
