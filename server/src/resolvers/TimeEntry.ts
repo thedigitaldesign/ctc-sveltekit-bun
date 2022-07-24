@@ -1,3 +1,3 @@
-export const ResolverTimeEntry = {
+export const TimeEntryResolver = {
 
 }

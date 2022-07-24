@@ -1,3 +1,3 @@
-export const ResolverCounselor = {
+export const CounselorResolver = {
 
 }

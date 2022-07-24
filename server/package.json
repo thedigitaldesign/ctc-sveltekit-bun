@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"start": "clear && nodemon ./src/index.ts",
-		"packages": "yarn add apollo-server graphql uuid @graphql-tools/schema @prisma/client && yarn add -D nodemon prisma ts-node-dev typescript tslib && npx tsc --init",
+		"packages": "yarn add apollo-server graphql uuid @graphql-tools/schema @graphql-tools/merge @prisma/client && yarn add -D nodemon prisma ts-node-dev typescript tslib && npx tsc --init",
 		"directories": "mkdir -p ./src/{resolvers,mutations,schemas} ./src/mutations/{create,delete,disable,hide,update}",
 		"create-files": "touch ./src/{index.ts,schema.ts,resolvers.ts,context.ts} ./src/mutations/Mutation.ts ./src/mutations/create/README.md ./src/mutations/delete/README.md ./src/mutations/disable/README.md ./src/mutations/hide/README.md ./src/mutations/update/README.md ./src/resolvers/Query.ts ./src/schemas/Query.ts",
 		"boilerplate": "yarn gql:packages gql:directories gql:create-files"
@@ -16,6 +16,7 @@
 		"typescript": "^4.7.4"
 	},
 	"dependencies": {
+		"@graphql-tools/merge": "^8.3.0",
 		"@graphql-tools/schema": "^8.5.0",
 		"@prisma/client": "^4.1.0",
 		"apollo-server": "^3.10.0",

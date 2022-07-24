@@ -1,3 +1,3 @@
-export const ResolverCategory = {
+export const CategoryResolver = {
 
 }

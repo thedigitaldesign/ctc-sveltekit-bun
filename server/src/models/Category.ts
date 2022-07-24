@@ -1,7 +1,9 @@
+import { SubCategory } from './SubCategory'
+
 export interface Category {
-  id?: string
-  created?: string
-  name?: string
-  sub_category?: object
+  id: string
+  created: string
+  name: string
+  SubCategory?: SubCategory
   fk_subcategory_id?: string
 }

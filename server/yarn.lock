@@ -92,7 +92,7 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@graphql-tools/merge@8.3.0":
+"@graphql-tools/merge@8.3.0", "@graphql-tools/merge@^8.3.0":
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-8.3.0.tgz#d3a8ba10942f8598788c3e03f97cc1d0c0b055f8"
   integrity sha512-xRa7RAQok/0DD2YnjuqikMrr7dUAxTpdGtZ7BkvUUGhYs3B3p7reCAfvOVr1DJAqVToP7hdlMk+S5+Ylk+AaqA==

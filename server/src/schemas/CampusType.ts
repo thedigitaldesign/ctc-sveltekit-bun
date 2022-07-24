@@ -15,4 +15,13 @@ export const CampusType = `
     created: String!
     type: String!
   }
+
+  type CampusTypePayload {
+    errors: [Error!]!
+    CampusType: CampusType
+  }
+
+  type Mutation {
+    createCampusType(type: String!): CampusTypePayload!
+  }
 `

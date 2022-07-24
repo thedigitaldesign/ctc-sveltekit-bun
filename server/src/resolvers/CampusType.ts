@@ -1,3 +1,3 @@
-export const ResolverCampusType = {
+export const CampusTypeResolver = {
 
 }

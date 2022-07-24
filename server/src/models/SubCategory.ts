@@ -1,5 +1,5 @@
 export interface SubCategory {
-  id?: string
-  created?: string
-  name?: string
+  id: string
+  created: string
+  name: string
 }

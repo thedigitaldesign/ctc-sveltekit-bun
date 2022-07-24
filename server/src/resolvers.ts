@@ -1,7 +1,8 @@
-import * as resolver from "./resolvers" // For some reason this breaks when referencing index.ts
-import * as mutation from './mutations'
-import { Query } from "./resolvers/Query" // For some reason this breaks when referencing index.ts
+import { mergeResolvers } from '@graphql-tools/merge'
+import { Mutation } from './mutations'
+import { Resolvers as Query } from './resolvers/index'
 
 export const resolvers = {
-  Query
+  Query,
+  Mutation
 }

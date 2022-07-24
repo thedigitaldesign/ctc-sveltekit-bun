@@ -1,3 +1,3 @@
-export const Activity = {
+export const ActivityResolver = {
 
 }

@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Models
 model Activity {
   id      String   @id @default(cuid())
   created DateTime @default(now())
@@ -73,14 +74,15 @@ model SubCategory {
 }
 
 model TimeEntry {
-  id          String    @id @default(cuid())
-  created     DateTime  @default(now())
-  description String
-  start_time  DateTime?
-  end_time    DateTime?
-  this_month  Boolean
-  this_week   Boolean
-  today       Boolean
+  id             String    @id @default(cuid())
+  created        DateTime  @default(now())
+  description    String
+  start_time     DateTime?
+  end_time       DateTime?
+  length_of_time Int       @default(0)
+  this_month     Boolean
+  this_week      Boolean
+  today          Boolean
 
   // Foreign Keys & References
   Activity       Activity @relation(fields: [fk_activity_id], references: [id])

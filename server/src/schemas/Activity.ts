@@ -16,12 +16,17 @@ export const Activity = `
     id: ID!
     created: String!
     type: String!
-    category: Category!
+    Category: Category!
     fk_category_id: String!
   }
 
+  type ActivityPayload {
+    errors: [Error!]!
+    Activity: Activity
+  }
+
   type Mutation {
-    create_activity(type: String!): ActivityPayload!
+    createActivity(type: String!): ActivityPayload!
   }
 `
 

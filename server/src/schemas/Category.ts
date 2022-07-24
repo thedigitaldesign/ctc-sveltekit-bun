@@ -16,7 +16,7 @@ export const Category = `
     id: ID!
     created: String!
     name: String!
-    sub_category: SubCategory
+    SubCategory: SubCategory
     fk_subcategory_id: String
   }
 `

@@ -16,7 +16,16 @@ export const Counselor = `
     id: ID!
     name: String!
     email: String!
-    campus: [Campus!]!
+    Campus: [Campus!]!
     fk_campus_id: String!
+  }
+
+  type CounselorPayload {
+    errors: [Error!]!
+    Counselor: Counselor
+  }
+
+  type Mutation {
+    createCounselor(type: String!): CounselorPayload!
   }
 `

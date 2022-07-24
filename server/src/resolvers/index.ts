@@ -1,9 +1,20 @@
-export * from './Query'
+import { Query } from './Query'
 
-export * from './Activity'
-export * from './Campus'
-export * from './CampusType'
-export * from './Category'
-export * from './Counselor'
-export * from './SubCategory'
-export * from './TimeEntry'
+import { ActivityResolver } from './Activity'
+import { CampusResolver } from './Campus'
+import { CampusTypeResolver } from './CampusType'
+import { CategoryResolver } from './Category'
+import { CounselorResolver } from './Counselor'
+import { SubCategoryResolver } from './SubCategory'
+import { TimeEntryResolver } from './TimeEntry'
+
+export const Resolvers = {
+  ...Query,
+  ...ActivityResolver,
+  ...CampusResolver,
+  ...CampusTypeResolver,
+  ...CategoryResolver,
+  ...CounselorResolver,
+  ...SubCategoryResolver,
+  ...TimeEntryResolver
+}

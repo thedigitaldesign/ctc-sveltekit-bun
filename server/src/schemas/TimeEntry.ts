@@ -22,7 +22,8 @@ export const TimeEntry = `
     description: String!
     start_time: String!
     end_time: String!
-    activity: Activity!
+    length_of_time: Int!
+    Activity: Activity!
     fk_activity_id: String!
   }
 `

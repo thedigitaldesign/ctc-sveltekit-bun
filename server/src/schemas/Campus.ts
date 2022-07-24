@@ -16,7 +16,20 @@ export const Campus = `
     id: ID!
     created: String!
     name: String!
-    campus_type: CampusType!
+    CampusType: CampusType!
     fk_campustype_id: String!
+  }
+
+  type CampusPayload {
+    errors: [Error!]!
+    Campus: Campus
+  }
+
+  type Mutation {
+    createCampus(name: String!, CampusType: CampusTypeInput): CampusPayload
+  }
+
+  input CampusTypeInput {
+    id: ID!
   }
 `
