@@ -15,4 +15,13 @@ export const SubCategory = `
     created: String!
     name: String!
   }
+
+  type SubCategoryPayload {
+    error: [Error!]!
+    SubCategory: SubCategory
+  }
+
+  type Mutation {
+    createSubCategory(name: String!): SubCategoryPayload!
+  }
 `

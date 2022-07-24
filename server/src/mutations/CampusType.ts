@@ -1,27 +1,28 @@
 import { CampusType } from '@prisma/client'
 import { Context } from '../context'
 import { CampusType as CampusTypeModel, Error } from '../models'
+import { datetime } from '../../helpers'
 
-interface CampusTypePayload {
-  error: Error[],
+interface Payload {
+  error: Error[]
   CampusType: CampusType | null
 }
 
 const CreateCampusType = {
-  createCampusType: async (_: any, { type }: CampusTypeModel, { prisma }: Context): Promise<CampusTypePayload> => {
-    const date = new Date()
-    
-    if(!type) {
+  createCampusType: async (_: any, { type }: CampusTypeModel, { prisma }: Context): Promise<Payload> => {
+    if (!type) {
       return {
-        error: [{
-          id: '123',
-          created: date.toUTCString(),
-          message: 'You must provide a `type` for CampusType'
-        }],
+        error: [
+          {
+            id: '123',
+            created: datetime.now,
+            message: 'You must provide a `type` for CampusType'
+          }
+        ],
         CampusType: null
       }
     }
-    
+
     const CampusType = await prisma.campusType.create({
       data: {
         type
@@ -32,13 +33,9 @@ const CreateCampusType = {
   }
 }
 
-const DeleteCampusType = {
-  
-}
+const DeleteCampusType = {}
 
-const UpdateCampusType = {
-  
-}
+const UpdateCampusType = {}
 
 export const CampusTypeMutation = {
   ...CreateCampusType,
