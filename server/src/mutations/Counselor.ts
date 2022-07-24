@@ -1,25 +1,43 @@
+import { Counselor } from '@prisma/client'
 import { Context } from '../context'
-import { Counselor } from '../models'
+import { Counselor as CounselorModel, Error } from '../models'
+import { datetime } from '../../helpers'
+
+interface Payload {
+  error: Error[]
+  Counselor: Counselor | null
+}
 
 const CreateCounselor = {
-  createCounselor: async (_: any, { name, email, Campus }: Counselor, { prisma }: Context) => {
-    prisma.counselor.create({
+  createCounselor: async (_: any, { name, email, Campus }: CounselorModel, { prisma }: Context): Promise<Payload> => {
+    if (!name || !email || !Campus) {
+      return {
+        error: [
+          {
+            id: '123',
+            created: datetime.now,
+            message: 'You must provide a `type` for CampusType'
+          }
+        ],
+        Counselor: null
+      }
+    }
+
+    const Counselor = await prisma.counselor.create({
       data: {
         name,
         email,
         fk_campus_id: Campus.id
       }
     })
+
+    return { error: [], Counselor }
   }
 }
 
-const DeleteCounselor = {
-  
-}
+const DeleteCounselor = {}
 
-const UpdateCounselor = {
-  
-}
+const UpdateCounselor = {}
 
 export const CounselorMutation = {
   ...CreateCounselor,
