@@ -26,7 +26,7 @@ export const Campus = `
   }
 
   type Mutation {
-    createCampus(name: String!, CampusType: CampusTypeInput): CampusPayload
+    createCampus(name: String!, CampusType: CampusTypeInput): CampusPayload!
   }
 
   input CampusTypeInput {

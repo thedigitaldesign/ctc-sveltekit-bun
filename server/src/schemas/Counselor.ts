@@ -26,6 +26,10 @@ export const Counselor = `
   }
 
   type Mutation {
-    createCounselor(type: String!): CounselorPayload!
+    createCounselor(name: String!, email: String!, Campus: CampusInput): CounselorPayload!
+  }
+
+  input CampusInput {
+    id: ID!
   }
 `
