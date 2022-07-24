@@ -19,4 +19,17 @@ export const Category = `
     SubCategory: SubCategory
     fk_subcategory_id: String
   }
+
+  type CategoryPayload {
+    error: [Error!]!
+    Category: Category
+  }
+
+  type Mutation {
+    createCategory(name: String!, SubCategory: SubCategoryInput): CategoryPayload!
+  }
+
+  input SubCategoryInput {
+    id: ID!
+  }
 `

@@ -26,16 +26,10 @@ export const Activity = `
   }
 
   type Mutation {
-    createActivity(type: String!): ActivityPayload!
+    createActivity(type: String!, Category: CategoryInput): ActivityPayload!
+  }
+
+  input CategoryInput {
+    id: ID!
   }
 `
-
-// export const Activity = `
-//   type Activity {
-//     id: ID!
-//     created: String!
-//     type: String!
-//     category(id: fk_category_id): Category
-//     fk_category_id: String!
-//   }
-// `

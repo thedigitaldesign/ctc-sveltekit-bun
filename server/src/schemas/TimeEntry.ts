@@ -26,4 +26,17 @@ export const TimeEntry = `
     Activity: Activity!
     fk_activity_id: String!
   }
+
+  type TimeEntryPayload {
+    error: [Error!]!
+    TimeEntry: TimeEntry
+  }
+
+  type Mutation {
+    createTimeEntry(description: String!, start_time: String!, end_time: String!, Activity: ActivityInput): TimeEntryPayload
+  }
+
+  input ActivityInput {
+    id: ID!
+  }
 `
