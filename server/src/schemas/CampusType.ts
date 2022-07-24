@@ -17,7 +17,7 @@ export const CampusType = `
   }
 
   type CampusTypePayload {
-    errors: [Error!]!
+    error: [Error!]!
     CampusType: CampusType
   }
 

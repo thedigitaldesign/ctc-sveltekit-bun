@@ -21,7 +21,7 @@ export const Counselor = `
   }
 
   type CounselorPayload {
-    errors: [Error!]!
+    error: [Error!]!
     Counselor: Counselor
   }
 

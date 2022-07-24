@@ -21,7 +21,7 @@ export const Campus = `
   }
 
   type CampusPayload {
-    errors: [Error!]!
+    error: [Error!]!
     Campus: Campus
   }
 

@@ -21,7 +21,7 @@ export const Activity = `
   }
 
   type ActivityPayload {
-    errors: [Error!]!
+    error: [Error!]!
     Activity: Activity
   }
 
