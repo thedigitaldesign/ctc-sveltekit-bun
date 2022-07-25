@@ -1,7 +1,11 @@
 export const Query = `
   type Query {
-    getCampusTypes: [CampusType!]!
+    getActivities: [Activity!]!
     getCampus: [Campus!]!
+    getCampusTypes: [CampusType!]!
+    getCategories: [Category!]!
     getCounselors: [Counselor!]!
+    getSubCategories: [SubCategory!]!
+    getTimeEntries: [TimeEntry!]!
   }
 `
