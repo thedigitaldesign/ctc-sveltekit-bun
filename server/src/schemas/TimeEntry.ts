@@ -33,7 +33,7 @@ export const TimeEntry = `
   }
 
   type Mutation {
-    createTimeEntry(description: String!, start_time: String!, end_time: String!, Activity: ActivityInput): TimeEntryPayload
+    createTimeEntry(description: String!, start_time: String!, end_time: String!, Activity: ActivityInput!): TimeEntryPayload
   }
 
   input ActivityInput {

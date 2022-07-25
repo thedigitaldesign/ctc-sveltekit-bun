@@ -16,7 +16,7 @@ const CreateCounselor = {
           {
             id: '123',
             created: datetime.now,
-            message: 'You must provide a `type` for Counselor'
+            message: 'You must provide a `name`, `email`, and `Campus` for Counselor'
           }
         ],
         Counselor: null

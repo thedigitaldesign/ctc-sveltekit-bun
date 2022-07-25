@@ -22,6 +22,8 @@
 3. Counselor [fk_campus_id]
 
 ## Create Activity
+Note: TODO Swap `Category` and `SubCategory`, `Category` needs to be created first, then bind `SubCategory` to a `Category`
+Note: TODO Add to `Activity` an optional `fk_subcategory_id`
 1. SubCategory (optional)
 2. Category [fk_subcategory_id?]
 3. Activity [fk_category_id]

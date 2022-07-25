@@ -26,7 +26,7 @@ export const Activity = `
   }
 
   type Mutation {
-    createActivity(type: String!, Category: CategoryInput): ActivityPayload!
+    createActivity(type: String!, Category: CategoryInput!): ActivityPayload!
   }
 
   input CategoryInput {
