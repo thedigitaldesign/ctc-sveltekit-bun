@@ -1,4 +1,4 @@
-import { Campus } from "./Campus"
+import { Campus } from "."
 
 export interface Counselor {
   id: string

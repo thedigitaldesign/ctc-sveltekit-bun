@@ -1,4 +1,4 @@
-import { CampusType } from './CampusType'
+import { CampusType } from '.'
 
 export interface Campus {
   id: string

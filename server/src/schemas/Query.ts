@@ -7,5 +7,6 @@ export const Query = `
     getCounselors: [Counselor!]!
     getSubCategories: [SubCategory!]!
     getTimeEntries: [TimeEntry!]!
+    getTimeEntriesBetweenDates(start_date: String!, end_date: String!): [TimeEntry!]!
   }
 `
