@@ -14,6 +14,8 @@ export const SubCategory = `
     id: ID!
     created: String!
     name: String!
+    Category: Category!
+    fk_category_id: ID!
   }
 
   type SubCategoryPayload {
@@ -22,6 +24,10 @@ export const SubCategory = `
   }
 
   type Mutation {
-    createSubCategory(name: String!): SubCategoryPayload!
+    createSubCategory(name: String!, Category: CategoryInput!): SubCategoryPayload!
+  }
+
+  input CategoryInput {
+    id: ID!
   }
 `

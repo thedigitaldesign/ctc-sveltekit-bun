@@ -1,0 +1,86 @@
+type Query {
+  getActivities: [Activity!]!
+  getCampus: [Campus!]!
+  getCampusTypes: [CampusType!]!
+  getCategories: [Category!]!
+  getCounselors: [Counselor!]!
+  getSubCategories: [SubCategory!]!
+  getTimeEntries: [TimeEntry!]!
+  getTimeEntriesBetweenDates(start_time: String!, end_time: String!): [TimeEntry!]!
+}
+
+####
+# Activity
+####
+type Activity {
+  created: String!
+  type: String!
+  Category: Category! @relation
+  fk_category_id: ID!
+}
+
+####
+# Campus
+####
+type Campus {
+  created: String!
+  name: String!
+  CampusType: CampusType! @relation
+  Counselor: Counselor @relation
+  fk_campustype_id: ID!
+}
+
+####
+# Campus Type
+####
+type CampusType {
+  created: String!
+  type: String!
+}
+
+####
+# Category
+####
+type Category {
+  created: String!
+  name: String!
+  SubCategory: SubCategory @relation
+  fk_subcategory_id: ID
+}
+
+####
+# Counselor
+####
+type Counselor {
+  created: String!
+  name: String!
+  email: String!
+  Campus: [Campus!]! @relation
+  fk_campus_id: ID!
+}
+
+####
+# Sub-Category
+####
+type SubCategory {
+  created: String!
+  name: String!
+  Category: Category! @relation
+  fk_category_id: ID!
+}
+
+####
+# Time Entry
+####
+type TimeEntry {
+  created: String!
+  date: String!
+  description: String!
+  start_time: String!
+  end_time: String!
+  length_of_time: Int!
+  Activity: Activity! @relation
+  Counselor: Counselor! @relation
+  fk_activity_id: ID!
+  fk_counselor_id: ID!
+}
