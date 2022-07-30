@@ -1,0 +1,726 @@
+directive @embedded on OBJECT
+
+directive @collection(name: String!) on OBJECT
+
+directive @index(name: String!) on FIELD_DEFINITION
+
+directive @resolver(
+  name: String
+  paginated: Boolean! = false
+) on FIELD_DEFINITION
+
+directive @relation(name: String) on FIELD_DEFINITION
+
+directive @unique(index: String) on FIELD_DEFINITION
+
+# Allow manipulating the relationship between the types 'Activity' and 'Category' using the field 'Activity.Category'.
+input ActivityCategoryRelation {
+  # Create a document of type 'Category' and associate it with the current document.
+  create: CategoryInput
+
+  # Connect a document of type 'Category' with the current document using its ID.
+  connect: ID
+}
+
+# 'Activity' input values
+input ActivityInput {
+  created: String!
+  type: String!
+  Category: ActivityCategoryRelation
+  fk_category_id: ID!
+}
+
+# Allow manipulating the relationship between the types 'Campus' and 'CampusType' using the field 'Campus.CampusType'.
+input CampusCampusTypeRelation {
+  # Create a document of type 'CampusType' and associate it with the current document.
+  create: CampusTypeInput
+
+  # Connect a document of type 'CampusType' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'Campus' and 'Counselor' using the field 'Campus.Counselor'.
+input CampusCounselorRelation {
+  # Create a document of type 'Counselor' and associate it with the current document.
+  create: CounselorInput
+
+  # Connect a document of type 'Counselor' with the current document using its ID.
+  connect: ID
+
+  # If true, disconnects this document from 'Counselor'
+  disconnect: Boolean
+}
+
+# 'Campus' input values
+input CampusInput {
+  created: String!
+  name: String!
+  CampusType: CampusCampusTypeRelation
+  Counselor: CampusCounselorRelation
+  fk_campustype_id: ID!
+}
+
+# 'CampusType' input values
+input CampusTypeInput {
+  created: String!
+  type: String!
+}
+
+# 'Category' input values
+input CategoryInput {
+  created: String!
+  name: String!
+  SubCategory: CategorySubCategoryRelation
+  fk_subcategory_id: ID
+}
+
+# Allow manipulating the relationship between the types 'Category' and 'SubCategory' using the field 'Category.SubCategory'.
+input CategorySubCategoryRelation {
+  # Create a document of type 'SubCategory' and associate it with the current document.
+  create: SubCategoryInput
+
+  # Connect a document of type 'SubCategory' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'Counselor' and 'Campus'.
+input CounselorCampusRelation {
+  # Create one or more documents of type 'Campus' and associate them with the current document.
+  create: [CampusInput]
+
+  # Connect one or more documents of type 'Campus' with the current document using their IDs.
+  connect: [ID]
+
+  # Disconnect the given documents of type 'Campus' from the current document using their IDs.
+  disconnect: [ID]
+}
+
+# 'Counselor' input values
+input CounselorInput {
+  created: String!
+  name: String!
+  email: String!
+  Campus: CounselorCampusRelation
+  fk_campus_id: ID!
+}
+
+scalar Date
+
+type Mutation {
+  # Create a new document in the collection of 'SubCategory'
+  createSubCategory(
+    # 'SubCategory' input values
+    data: SubCategoryInput!
+  ): SubCategory!
+
+  # Create a new document in the collection of 'Activity'
+  createActivity(
+    # 'Activity' input values
+    data: ActivityInput!
+  ): Activity!
+
+  # Partially updates an existing document in the collection of 'Category'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateCategory(
+    # The 'Category' document's ID
+    id: ID!
+
+    # 'Category' input values
+    data: PartialUpdateCategoryInput!
+  ): Category
+
+  # Partially updates an existing document in the collection of 'Activity'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateActivity(
+    # The 'Activity' document's ID
+    id: ID!
+
+    # 'Activity' input values
+    data: PartialUpdateActivityInput!
+  ): Activity
+
+  # Create a new document in the collection of 'CampusType'
+  createCampusType(
+    # 'CampusType' input values
+    data: CampusTypeInput!
+  ): CampusType!
+
+  # Delete an existing document in the collection of 'SubCategory'
+  deleteSubCategory(
+    # The 'SubCategory' document's ID
+    id: ID!
+  ): SubCategory
+
+  # Delete an existing document in the collection of 'Counselor'
+  deleteCounselor(
+    # The 'Counselor' document's ID
+    id: ID!
+  ): Counselor
+
+  # Create a new document in the collection of 'TimeEntry'
+  createTimeEntry(
+    # 'TimeEntry' input values
+    data: TimeEntryInput!
+  ): TimeEntry!
+
+  # Update an existing document in the collection of 'Counselor'
+  updateCounselor(
+    # The 'Counselor' document's ID
+    id: ID!
+
+    # 'Counselor' input values
+    data: CounselorInput!
+  ): Counselor
+
+  # Delete an existing document in the collection of 'TimeEntry'
+  deleteTimeEntry(
+    # The 'TimeEntry' document's ID
+    id: ID!
+  ): TimeEntry
+
+  # Update an existing document in the collection of 'Campus'
+  updateCampus(
+    # The 'Campus' document's ID
+    id: ID!
+
+    # 'Campus' input values
+    data: CampusInput!
+  ): Campus
+
+  # Create a new document in the collection of 'Campus'
+  createCampus(
+    # 'Campus' input values
+    data: CampusInput!
+  ): Campus!
+
+  # Partially updates an existing document in the collection of 'TimeEntry'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateTimeEntry(
+    # The 'TimeEntry' document's ID
+    id: ID!
+
+    # 'TimeEntry' input values
+    data: PartialUpdateTimeEntryInput!
+  ): TimeEntry
+
+  # Create a new document in the collection of 'Counselor'
+  createCounselor(
+    # 'Counselor' input values
+    data: CounselorInput!
+  ): Counselor!
+
+  # Partially updates an existing document in the collection of 'Counselor'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateCounselor(
+    # The 'Counselor' document's ID
+    id: ID!
+
+    # 'Counselor' input values
+    data: PartialUpdateCounselorInput!
+  ): Counselor
+
+  # Create a new document in the collection of 'Category'
+  createCategory(
+    # 'Category' input values
+    data: CategoryInput!
+  ): Category!
+
+  # Update an existing document in the collection of 'Category'
+  updateCategory(
+    # The 'Category' document's ID
+    id: ID!
+
+    # 'Category' input values
+    data: CategoryInput!
+  ): Category
+
+  # Update an existing document in the collection of 'SubCategory'
+  updateSubCategory(
+    # The 'SubCategory' document's ID
+    id: ID!
+
+    # 'SubCategory' input values
+    data: SubCategoryInput!
+  ): SubCategory
+
+  # Update an existing document in the collection of 'Activity'
+  updateActivity(
+    # The 'Activity' document's ID
+    id: ID!
+
+    # 'Activity' input values
+    data: ActivityInput!
+  ): Activity
+
+  # Partially updates an existing document in the collection of 'Campus'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateCampus(
+    # The 'Campus' document's ID
+    id: ID!
+
+    # 'Campus' input values
+    data: PartialUpdateCampusInput!
+  ): Campus
+
+  # Update an existing document in the collection of 'TimeEntry'
+  updateTimeEntry(
+    # The 'TimeEntry' document's ID
+    id: ID!
+
+    # 'TimeEntry' input values
+    data: TimeEntryInput!
+  ): TimeEntry
+
+  # Delete an existing document in the collection of 'Category'
+  deleteCategory(
+    # The 'Category' document's ID
+    id: ID!
+  ): Category
+
+  # Delete an existing document in the collection of 'Campus'
+  deleteCampus(
+    # The 'Campus' document's ID
+    id: ID!
+  ): Campus
+
+  # Partially updates an existing document in the collection of 'SubCategory'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateSubCategory(
+    # The 'SubCategory' document's ID
+    id: ID!
+
+    # 'SubCategory' input values
+    data: PartialUpdateSubCategoryInput!
+  ): SubCategory
+
+  # Partially updates an existing document in the collection of 'CampusType'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateCampusType(
+    # The 'CampusType' document's ID
+    id: ID!
+
+    # 'CampusType' input values
+    data: PartialUpdateCampusTypeInput!
+  ): CampusType
+
+  # Update an existing document in the collection of 'CampusType'
+  updateCampusType(
+    # The 'CampusType' document's ID
+    id: ID!
+
+    # 'CampusType' input values
+    data: CampusTypeInput!
+  ): CampusType
+
+  # Delete an existing document in the collection of 'CampusType'
+  deleteCampusType(
+    # The 'CampusType' document's ID
+    id: ID!
+  ): CampusType
+
+  # Delete an existing document in the collection of 'Activity'
+  deleteActivity(
+    # The 'Activity' document's ID
+    id: ID!
+  ): Activity
+}
+
+# 'Activity' input values
+input PartialUpdateActivityInput {
+  created: String
+  type: String
+  Category: ActivityCategoryRelation
+  fk_category_id: ID
+}
+
+# 'Campus' input values
+input PartialUpdateCampusInput {
+  created: String
+  name: String
+  CampusType: CampusCampusTypeRelation
+  Counselor: CampusCounselorRelation
+  fk_campustype_id: ID
+}
+
+# 'CampusType' input values
+input PartialUpdateCampusTypeInput {
+  created: String
+  type: String
+}
+
+# 'Category' input values
+input PartialUpdateCategoryInput {
+  created: String
+  name: String
+  SubCategory: CategorySubCategoryRelation
+  fk_subcategory_id: ID
+}
+
+# 'Counselor' input values
+input PartialUpdateCounselorInput {
+  created: String
+  name: String
+  email: String
+  Campus: CounselorCampusRelation
+  fk_campus_id: ID
+}
+
+# 'SubCategory' input values
+input PartialUpdateSubCategoryInput {
+  created: String
+  name: String
+  Category: SubCategoryCategoryRelation
+  fk_category_id: ID
+}
+
+# 'TimeEntry' input values
+input PartialUpdateTimeEntryInput {
+  created: String
+  date: String
+  description: String
+  start_time: String
+  end_time: String
+  length_of_time: Int
+  Activity: TimeEntryActivityRelation
+  Counselor: TimeEntryCounselorRelation
+  fk_activity_id: ID
+  fk_counselor_id: ID
+}
+
+# Allow manipulating the relationship between the types 'SubCategory' and 'Category' using the field 'SubCategory.Category'.
+input SubCategoryCategoryRelation {
+  # Create a document of type 'Category' and associate it with the current document.
+  create: CategoryInput
+
+  # Connect a document of type 'Category' with the current document using its ID.
+  connect: ID
+
+  # If true, disconnects this document from 'Category'
+  disconnect: Boolean
+}
+
+# 'SubCategory' input values
+input SubCategoryInput {
+  created: String!
+  name: String!
+  Category: SubCategoryCategoryRelation
+  fk_category_id: ID!
+}
+
+scalar Time
+
+# Allow manipulating the relationship between the types 'TimeEntry' and 'Activity' using the field 'TimeEntry.Activity'.
+input TimeEntryActivityRelation {
+  # Create a document of type 'Activity' and associate it with the current document.
+  create: ActivityInput
+
+  # Connect a document of type 'Activity' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'TimeEntry' and 'Counselor' using the field 'TimeEntry.Counselor'.
+input TimeEntryCounselorRelation {
+  # Create a document of type 'Counselor' and associate it with the current document.
+  create: CounselorInput
+
+  # Connect a document of type 'Counselor' with the current document using its ID.
+  connect: ID
+}
+
+# 'TimeEntry' input values
+input TimeEntryInput {
+  created: String!
+  date: String!
+  description: String!
+  start_time: String!
+  end_time: String!
+  length_of_time: Int!
+  Activity: TimeEntryActivityRelation
+  Counselor: TimeEntryCounselorRelation
+  fk_activity_id: ID!
+  fk_counselor_id: ID!
+}
+
+type Activity {
+  Category: Category!
+
+  # The document's ID.
+  _id: ID!
+  fk_category_id: ID!
+  type: String!
+  created: String!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'Activity'.
+type ActivityPage {
+  # The elements of type 'Activity' in this page.
+  data: [Activity]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type Campus {
+  Counselor: Counselor
+  name: String!
+
+  # The document's ID.
+  _id: ID!
+  CampusType: CampusType!
+  fk_campustype_id: ID!
+  created: String!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'Campus'.
+type CampusPage {
+  # The elements of type 'Campus' in this page.
+  data: [Campus]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type CampusType {
+  # The document's ID.
+  _id: ID!
+
+  # The document's timestamp.
+  _ts: Long!
+  created: String!
+  type: String!
+}
+
+# The pagination object for elements of type 'CampusType'.
+type CampusTypePage {
+  # The elements of type 'CampusType' in this page.
+  data: [CampusType]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type Category {
+  name: String!
+
+  # The document's ID.
+  _id: ID!
+  SubCategory: SubCategory
+  fk_subcategory_id: ID
+  created: String!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'Category'.
+type CategoryPage {
+  # The elements of type 'Category' in this page.
+  data: [Category]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type Counselor {
+  name: String!
+  email: String!
+
+  # The document's ID.
+  _id: ID!
+  Campus(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): CampusPage!
+  fk_campus_id: ID!
+  created: String!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'Counselor'.
+type CounselorPage {
+  # The elements of type 'Counselor' in this page.
+  data: [Counselor]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type Query {
+  # Find a document from the collection of 'Counselor' by its id.
+  findCounselorByID(
+    # The 'Counselor' document's ID
+    id: ID!
+  ): Counselor
+
+  # Find a document from the collection of 'TimeEntry' by its id.
+  findTimeEntryByID(
+    # The 'TimeEntry' document's ID
+    id: ID!
+  ): TimeEntry
+
+  # Find a document from the collection of 'SubCategory' by its id.
+  findSubCategoryByID(
+    # The 'SubCategory' document's ID
+    id: ID!
+  ): SubCategory
+
+  # Find a document from the collection of 'Category' by its id.
+  findCategoryByID(
+    # The 'Category' document's ID
+    id: ID!
+  ): Category
+  getCampusTypes(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): CampusTypePage!
+  getCampus(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): CampusPage!
+
+  # Find a document from the collection of 'Campus' by its id.
+  findCampusByID(
+    # The 'Campus' document's ID
+    id: ID!
+  ): Campus
+  getCounselors(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): CounselorPage!
+
+  # Find a document from the collection of 'Activity' by its id.
+  findActivityByID(
+    # The 'Activity' document's ID
+    id: ID!
+  ): Activity
+  getCategories(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): CategoryPage!
+  getTimeEntriesBetweenDates(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+    start_time: String!
+    end_time: String!
+  ): TimeEntryPage!
+  getActivities(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): ActivityPage!
+  getTimeEntries(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): TimeEntryPage!
+
+  # Find a document from the collection of 'CampusType' by its id.
+  findCampusTypeByID(
+    # The 'CampusType' document's ID
+    id: ID!
+  ): CampusType
+  getSubCategories(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): SubCategoryPage!
+}
+
+type SubCategory {
+  name: String!
+  Category: Category!
+
+  # The document's ID.
+  _id: ID!
+  fk_category_id: ID!
+  created: String!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'SubCategory'.
+type SubCategoryPage {
+  # The elements of type 'SubCategory' in this page.
+  data: [SubCategory]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type TimeEntry {
+  Counselor: Counselor!
+  start_time: String!
+  length_of_time: Int!
+  description: String!
+  fk_activity_id: ID!
+
+  # The document's ID.
+  _id: ID!
+  end_time: String!
+  Activity: Activity!
+  date: String!
+  fk_counselor_id: ID!
+  created: String!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'TimeEntry'.
+type TimeEntryPage {
+  # The elements of type 'TimeEntry' in this page.
+  data: [TimeEntry]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+# The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1.
+scalar Long
