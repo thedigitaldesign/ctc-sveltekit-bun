@@ -9,9 +9,16 @@
           <div class="sm:block sm:ml-6">
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="/" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
-              <a href="/campus" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Campus</a>
-              <a href="/counselor" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Counselors</a>
+              <a href="/" class="nav-link" aria-current="page">Home</a>
+              <span class="inline-block px-1 text-white">|</span>
+              <a href="/campus" class="nav-link" aria-current="page">Campus</a>
+              <a href="/counselor" class="nav-link" aria-current="page">Counselors</a>
+              <span class="inline-block px-1 text-white">|</span>
+              <a href="/subcategory" class="nav-link" aria-current="page">Subcategory</a>
+              <a href="/category" class="nav-link" aria-current="page">Category</a>
+              <a href="/activity" class="nav-link" aria-current="page">Activity</a>
+              <span class="inline-block px-1 text-white">|</span>
+              <a href="/time-entry" class="nav-link" aria-current="page">Time Entry</a>
             </div>
           </div>
         </div>
@@ -21,4 +28,7 @@
 </template>
 
 <style lang="less">
+  .nav-link {
+    @apply bg-gray-900 text-white px-2 py-1 rounded-md text-sm font-medium;
+  }
 </style>

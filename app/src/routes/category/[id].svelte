@@ -6,50 +6,48 @@
 
     const query = `#graphql
       query {
-        findCounselorByID(id: ${id}) {
+        findCategoryByID(id: ${id}) {
           _id
           created
           name
-          email
-          fk_campus_id
         }
       }
     `
 
-    const counselor = clientQuery(query)
+    const category = clientQuery(query)
 
     return {
       props: {
-        counselor
+        category
       }
     }
   }
 </script>
 
 <script lang="ts">
-  import CounselorDetails from '../../components/CounselorDetails.svelte'
-  export let counselor: any
+  import CategoryDetails from '../../components/CategoryDetails.svelte'
+  export let category: any
 
-  const counselorData = counselor
+  const categoryData = category
 </script>
 
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Update Counselor</h1>
-        <p class="mt-2 text-sm text-gray-700">Update a counselor that is part of your district.</p>
+        <h1 class="text-xl font-semibold text-gray-900">Update Category</h1>
+        <p class="mt-2 text-sm text-gray-700">Update a category that will be used at a district level.</p>
       </div>
     </div>
 
-    {#if $counselorData.fetching}
+    {#if $categoryData.fetching}
       <p>Loading...</p>
-    {:else if $counselorData.error}
-      {#each $counselorData.error as error}
+    {:else if $categoryData.error}
+      {#each $categoryData.error as error}
         <p>{error.message}</p>
       {/each}
     {:else}
-      <CounselorDetails counselorData={$counselorData} />
+      <CategoryDetails categoryData={$categoryData} />
     {/if}
   </div>
 </template>
