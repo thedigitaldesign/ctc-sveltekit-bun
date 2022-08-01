@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { clientQuery } from '../../client'
+  import { clientQuery } from '../../helpers'
   // import { GetCampusTypes } from '../../models/GetCampusTypes'
 
   const query = `#graphql

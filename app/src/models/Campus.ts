@@ -1,7 +1,7 @@
 import type { CampusType } from '.'
 
 export interface Campus {
-  id: string
+  _id: string
   created: string
   name: string
   CampusType: CampusType
