@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CounselorDetails from '../../components/CounselorDetails.svelte'
+  import ActivityDetails from '../../components/ActivityDetails.svelte'
 </script>
 
 <template>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <CounselorDetails counselorData={null} />
+    <ActivityDetails activityData={null} />
   </div>
 </template>
 

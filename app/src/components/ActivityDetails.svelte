@@ -2,41 +2,38 @@
   import { goto } from '$app/navigation'
   import { datetime, clientMutation, clientQuery, alphaDesc } from '../helpers'
 
-  export let counselorData: any
+  export let activityData: any
 
   interface Variables {
     created: string
-    name: string
-    email: string
-    fk_campus_id: string
+    type: string
+    fk_category_id: string
   }
 
   let variables: Variables = {
     created: datetime.now,
-    name: '',
-    email: '',
-    fk_campus_id: ''
+    type: '',
+    fk_category_id: ''
   }
-  let counselorId = null
-  $: console.log('counselorData: ', counselorData)
+  let activityId = null
+  $: console.log('activityData: ', activityData)
 
-  if (counselorData) {
-    const data = counselorData.data.findCounselorByID
-    counselorId = data._id
+  if (activityData) {
+    const data = activityData.data.findActivityByID
+    activityId = data._id
 
     variables = {
       created: data.created || datetime.now,
-      name: data.name,
-      email: data.email,
-      fk_campus_id: data.fk_campus_id
+      type: data.type,
+      fk_category_id: data.fk_category_id
     }
   }
 
-  console.log('counselorId: ', counselorId)
+  console.log('activityId: ', activityId)
 
   const query = `#graphql
     query {
-      getCampus {
+      getCategories {
         data {
           _id
           name
@@ -45,73 +42,67 @@
     }
   `
   const create = `#graphql
-    mutation ($created: String!, $name: String!, $email: String!, $fk_campus_id: ID!) {
-      createCounselor (data: {
+    mutation ($created: String!, $type: String!, $fk_category_id: ID!) {
+      createActivity (data: {
         created: $created
-        name: $name
-        email: $email
-        fk_campus_id: $fk_campus_id
+        type: $type
+        fk_category_id: $fk_category_id
       }) {
         _id
         created
-        name
-        email
-        fk_campus_id
+        type
+        fk_category_id
       }
     }
   `
   const update = `#graphql
     mutation (
       $created: String!,
-      $name: String!,
-      $email: String!,
-      $fk_campus_id: ID!
+      $type: String!,
+      $fk_category_id: ID!
     ) {
-      updateCounselor (
-        id: ${counselorId}, 
+      updateActivity (
+        id: ${activityId}, 
         data: {
           created: $created
-          name: $name
-          email: $email
-          fk_campus_id: $fk_campus_id
+          type: $type
+          fk_category_id: $fk_category_id
         }) {
         _id
         created
-        name
-        email
-        fk_campus_id
+        type
+        fk_category_id
       }
     }
   `
 
-  let campus = clientQuery(query)
+  let category = clientQuery(query)
   $: console.log('variables: ', variables)
 
   const clearVariables = () => {
     variables = {
       created: datetime.now,
-      name: '',
-      email: '',
-      fk_campus_id: ''
+      type: '',
+      fk_category_id: ''
     }
   }
 
-  const saveCounselor = () => {
-    if (counselorId) {
+  const saveActivity = () => {
+    if (activityId) {
       clientMutation(update, variables)
       clearVariables()
-      return goto(`/counselor`)
+      return goto(`/activity`)
     }
 
     clientMutation(create, variables)
     clearVariables()
-    return goto(`/counselor`)
+    return goto(`/activity`)
   }
   // BUG: When you edit and then click `Save and create new` the record updates, 
   //      but when you create a new record and click `Save and create new` again 
-  //      it updates the old record because of the check for `counselorId`.
+  //      it updates the old record because of the check for `activityId`.
   const saveAndCreate = () => {
-    if (counselorId) {
+    if (activityId) {
       clientMutation(update, variables)
       clearVariables()
 
@@ -126,57 +117,44 @@
   const cancel = () => {
     clearVariables()
 
-    return goto(`/counselor`)
+    return goto(`/activity`)
   }
 </script>
 
 <template>
-  <form on:submit|preventDefault={saveCounselor} class="space-y-8 divide-y divide-gray-200">
+  <form on:submit|preventDefault={saveActivity} class="space-y-8 divide-y divide-gray-200">
     <div class="space-y-8 divide-y divide-gray-200">
       <div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label for="name" class="block text-sm font-medium text-gray-700"> Name </label>
+            <label for="type" class="block text-sm font-medium text-gray-700"> Name </label>
             <div class="mt-1">
               <input
                 type="text"
-                name="name"
-                id="name"
-                bind:value={variables.name}
+                name="type"
+                id="type"
+                bind:value={variables.type}
                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              />
-            </div>
-          </div>
-
-          <div class="sm:col-span-3">
-            <label for="email" class="block text-sm font-medium text-gray-700"> Email </label>
-            <div class="mt-1">
-              <input
-                type="text"
-                name="email"
-                id="email"
-                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                bind:value={variables.email}
               />
             </div>
           </div>
 
           <div class="sm:col-span-6">
-            <label for="campus" class="block text-sm font-medium text-gray-700">Campus</label>
-            {#if $campus.fetching}
+            <label for="category" class="block text-sm font-medium text-gray-700">Categories</label>
+            {#if $category.fetching}
               <p>Loading...</p>
-            {:else if $campus.error}
+            {:else if $category.error}
               <p>
-                Oh no! {$campus.error.message}
+                Oh no! {$category.error.message}
               </p>
             {:else}
               <select
-                id="campus"
-                name="campus"
+                id="category"
+                name="category"
                 class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                bind:value={variables.fk_campus_id}
+                bind:value={variables.fk_category_id}
               >
-                {#each alphaDesc($campus.data.getCampus.data, 'name') as item}
+                {#each alphaDesc($category.data.getCategories.data, 'name') as item}
                   <option value={item._id}>{item.name}</option>
                 {/each}
               </select>

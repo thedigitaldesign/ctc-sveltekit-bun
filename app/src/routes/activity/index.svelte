@@ -1,37 +1,36 @@
 <script lang="ts">
   import { goto } from '$app/navigation'
 
-  import { clientQuery } from '../../helpers'
+  import { alphaDesc, clientQuery } from '../../helpers'
 
   const query = `#graphql
     query {
-      getCounselors {
+      getActivities {
         data {
           _id
-          name
-          email
-          fk_campus_id
+          type
+          fk_category_id
         }
       }
     }
   `
 
-  $: counselors = clientQuery(query)
+  $: activities = clientQuery(query)
 </script>
 
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Counselors</h1>
-        <p class="mt-2 text-sm text-gray-700">A list of all the counselors in your district.</p>
+        <h1 class="text-xl font-semibold text-gray-900">Activities</h1>
+        <p class="mt-2 text-sm text-gray-700">A list of all the activities in your district.</p>
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
         <button
           type="button"
-          on:click={() => goto('/counselor/create')}
+          on:click={() => goto('/activity/create')}
           class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-          >Add Counselor</button
+          >Add Activity</button
         >
       </div>
     </div>
@@ -42,32 +41,28 @@
             <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Phone</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">School</th>
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Type</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Category</th>
                   <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                     <span class="sr-only">Edit</span>
                   </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                {#if $counselors.fetching}
+                {#if $activities.fetching}
                   <p>Loading...</p>
-                {:else if $counselors.error}
+                {:else if $activities.error}
                   <p>
-                    Oh no! {$counselors.error.message}
+                    Oh no! {$activities.error.message}
                   </p>
                 {:else}
-                  {#each $counselors.data.getCounselors.data as item}
+                  {#each alphaDesc($activities.data.getActivities.data, 'type') as item}
                     <tr>
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{item.name}</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.email}</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">(817) 555-1234 ext. 567</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">TODO</td>
+                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{item.type}</td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{ item.fk_category_id === '338814106031095877' ? 'Counseling' : 'Non-Counseling' }</td>
                       <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a sveltekit:prefetch href={`/counselor/${item._id}`} class="text-indigo-600 hover:text-indigo-900">
-                          Edit<span class="sr-only">, ${item.name}}</span>
+                        <a sveltekit:prefetch href={`/activity/${item._id}`} class="text-indigo-600 hover:text-indigo-900">
+                          Edit<span class="sr-only">, ${item.type}}</span>
                         </a>
                       </td>
                     </tr>

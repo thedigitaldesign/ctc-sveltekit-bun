@@ -6,50 +6,47 @@
 
     const query = `#graphql
       query {
-        findCounselorByID(id: ${id}) {
+        findSubCategoryByID(id: ${id}) {
           _id
           created
           name
-          email
-          fk_campus_id
+          fk_category_id
         }
       }
     `
 
-    const counselor = clientQuery(query)
+    const subcategory = clientQuery(query)
 
     return {
       props: {
-        counselor
+        subcategory
       }
     }
   }
 </script>
 
 <script lang="ts">
-  import CounselorDetails from '../../components/CounselorDetails.svelte'
-  export let counselor: any
+  import SubCategoryDetails from '../../components/SubCategoryDetails.svelte'
+  export let subcategory: any
 
-  const counselorData = counselor
+  const subcategoryData = subcategory
 </script>
 
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Update Counselor</h1>
-        <p class="mt-2 text-sm text-gray-700">Update a counselor that is part of your district.</p>
+        <h1 class="text-xl font-semibold text-gray-900">Update Subcategory</h1>
+        <p class="mt-2 text-sm text-gray-700">Update a subcategory that will be used at a district level.</p>
       </div>
     </div>
 
-    {#if $counselorData.fetching}
+    {#if $subcategoryData.fetching}
       <p>Loading...</p>
-    {:else if $counselorData.error}
-      {#each $counselorData.error as error}
-        <p>{error.message}</p>
-      {/each}
+    {:else if $subcategoryData.error}
+      <p>{$subcategoryData.error.message}</p>
     {:else}
-      <CounselorDetails counselorData={$counselorData} />
+      <SubCategoryDetails subcategoryData={$subcategoryData} />
     {/if}
   </div>
 </template>

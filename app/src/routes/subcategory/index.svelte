@@ -59,7 +59,7 @@
                   {#each alphaDesc($subcategories.data.getSubCategories.data, 'name') as item}
                     <tr>
                       <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{item.name}</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item._id}</td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{ item.fk_category_id === '338814106031095877' ? 'Counseling' : 'Non-Counseling' }</td>
                       <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                         <a sveltekit:prefetch href={`/subcategory/${item._id}`} class="text-indigo-600 hover:text-indigo-900">
                           Edit<span class="sr-only">, ${item.name}}</span>

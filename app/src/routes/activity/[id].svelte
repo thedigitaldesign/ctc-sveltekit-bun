@@ -6,50 +6,47 @@
 
     const query = `#graphql
       query {
-        findCounselorByID(id: ${id}) {
+        findActivityByID(id: ${id}) {
           _id
           created
-          name
-          email
-          fk_campus_id
+          type
+          fk_category_id
         }
       }
     `
 
-    const counselor = clientQuery(query)
+    const activity = clientQuery(query)
 
     return {
       props: {
-        counselor
+        activity
       }
     }
   }
 </script>
 
 <script lang="ts">
-  import CounselorDetails from '../../components/CounselorDetails.svelte'
-  export let counselor: any
+  import ActivityDetails from '../../components/ActivityDetails.svelte'
+  export let activity: any
 
-  const counselorData = counselor
+  const activityData = activity
 </script>
 
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Update Counselor</h1>
-        <p class="mt-2 text-sm text-gray-700">Update a counselor that is part of your district.</p>
+        <h1 class="text-xl font-semibold text-gray-900">Update Activity</h1>
+        <p class="mt-2 text-sm text-gray-700">Update an activity that is part of your district.</p>
       </div>
     </div>
 
-    {#if $counselorData.fetching}
+    {#if $activityData.fetching}
       <p>Loading...</p>
-    {:else if $counselorData.error}
-      {#each $counselorData.error as error}
-        <p>{error.message}</p>
-      {/each}
+    {:else if $activityData.error}
+        <p>{$activityData.error.message}</p>
     {:else}
-      <CounselorDetails counselorData={$counselorData} />
+      <ActivityDetails activityData={$activityData} />
     {/if}
   </div>
 </template>
