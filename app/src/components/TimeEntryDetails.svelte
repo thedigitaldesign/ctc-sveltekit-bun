@@ -2,41 +2,63 @@
   import { goto } from '$app/navigation'
   import { datetime, clientMutation, clientQuery, alphaDesc } from '../helpers'
 
-  export let counselorData: any
+  export let timeEntryData: any
 
   interface Variables {
     created: string
-    name: string
-    email: string
-    fk_campus_id: string
+    date: string
+    description: string
+    start_time: string
+    end_time: string
+    length_of_time: number
+    fk_activity_id: string
+    fk_counselor_id: string
   }
 
   let variables: Variables = {
     created: datetime.now,
-    name: '',
-    email: '',
-    fk_campus_id: ''
+    date: '',
+    description: '',
+    start_time: '',
+    end_time: '',
+    length_of_time: 0,
+    fk_activity_id: '',
+    fk_counselor_id: ''
   }
   let counselorId = null
-  $: console.log('counselorData: ', counselorData)
+  $: console.log('timeEntryData: ', timeEntryData)
 
-  if (counselorData) {
-    const data = counselorData.data.findCounselorByID
+  if (timeEntryData) {
+    const data = timeEntryData.data.findCounselorByID
     counselorId = data._id
 
     variables = {
       created: data.created || datetime.now,
-      name: data.name,
-      email: data.email,
-      fk_campus_id: data.fk_campus_id
+      date: data.date,
+      description: data.description,
+      start_time: data.start_time,
+      end_time: data.end_time,
+      length_of_time: data.length_of_time,
+      fk_activity_id: data.fk_activity_id,
+      fk_counselor_id: data.fk_counselor_id
     }
   }
 
   console.log('counselorId: ', counselorId)
 
-  const query = `#graphql
-    query {
-      getCampus {
+  const queryActivity = `#graphql
+    query($id: ID!) {
+      findActivityByID(id: $id) {
+        data {
+          _id
+          type
+        }
+      }
+    }
+  `
+  const queryCounselor = `#graphql
+    query($id: ID!) {
+      findCounselorByID(id: $id) {
         data {
           _id
           name
@@ -84,15 +106,21 @@
     }
   `
 
-  let campus = clientQuery(query)
+  let activity = clientQuery(queryActivity)
+  let counselor = clientQuery(queryCounselor)
+
   $: console.log('variables: ', variables)
 
   const clearVariables = () => {
     variables = {
       created: datetime.now,
-      name: '',
-      email: '',
-      fk_campus_id: ''
+      date: '',
+      description: '',
+      start_time: '',
+      end_time: '',
+      length_of_time: 0,
+      fk_activity_id: '',
+      fk_counselor_id: ''
     }
   }
 
@@ -107,8 +135,8 @@
     clearVariables()
     return goto(`/counselor`)
   }
-  // BUG: When you edit and then click `Save and create new` the record updates, 
-  //      but when you create a new record and click `Save and create new` again 
+  // BUG: When you edit and then click `Save and create new` the record updates,
+  //      but when you create a new record and click `Save and create new` again
   //      it updates the old record because of the check for `counselorId`.
   const saveAndCreate = () => {
     if (counselorId) {
@@ -136,13 +164,13 @@
       <div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label for="name" class="block text-sm font-medium text-gray-700"> Name </label>
+            <label for="date" class="block text-sm font-medium text-gray-700"> Date </label>
             <div class="mt-1">
               <input
                 type="text"
-                name="name"
-                id="name"
-                bind:value={variables.name}
+                name="date"
+                id="date"
+                bind:value={variables.date}
                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
               />
             </div>
@@ -161,7 +189,7 @@
             </div>
           </div>
 
-          <div class="sm:col-span-6">
+          <!-- <div class="sm:col-span-3">
             <label for="campus" class="block text-sm font-medium text-gray-700">Campus</label>
             {#if $campus.fetching}
               <p>Loading...</p>
@@ -181,7 +209,7 @@
                 {/each}
               </select>
             {/if}
-          </div>
+          </div> -->
         </div>
 
         <div class="pt-6">

@@ -3,7 +3,7 @@
 export const SHELL = "/bin/bash";
 
 /** @type {import('$env/static/private').SESSION_MANAGER} */
-export const SESSION_MANAGER = "local/unix:@/tmp/.ICE-unix/2442,unix/unix:/tmp/.ICE-unix/2442";
+export const SESSION_MANAGER = "local/unix:@/tmp/.ICE-unix/2439,unix/unix:/tmp/.ICE-unix/2439";
 
 /** @type {import('$env/static/private').COLORTERM} */
 export const COLORTERM = "truecolor";
@@ -66,7 +66,7 @@ export const npm_config_bin_links = "true";
 export const DESKTOP_SESSION = "gnome-xorg";
 
 /** @type {import('$env/static/private').SSH_AGENT_PID} */
-export const SSH_AGENT_PID = "2127";
+export const SSH_AGENT_PID = "2124";
 
 /** @type {import('$env/static/private').NO_AT_BRIDGE} */
 export const NO_AT_BRIDGE = "1";
@@ -105,7 +105,7 @@ export const npm_package_readmeFilename = "README.md";
 export const npm_package_devDependencies__typescript_eslint_parser = "^5.31.0";
 
 /** @type {import('$env/static/private').SYSTEMD_EXEC_PID} */
-export const SYSTEMD_EXEC_PID = "2498";
+export const SYSTEMD_EXEC_PID = "2496";
 
 /** @type {import('$env/static/private').npm_package_scripts_build} */
 export const npm_package_scripts_build = "vite build";
@@ -177,13 +177,13 @@ export const GIT_ASKPASS = "/usr/share/code/resources/app/extensions/git/dist/as
 export const npm_package_dependencies_faunadb = "^4.6.0";
 
 /** @type {import('$env/static/private').INVOCATION_ID} */
-export const INVOCATION_ID = "5bc81ab5c1dd43abb8f3cba9aaf4a1d4";
+export const INVOCATION_ID = "6047d2b211ea4dba83c38a669e19d8bf";
 
 /** @type {import('$env/static/private').npm_package_devDependencies_prettier_plugin_svelte} */
 export const npm_package_devDependencies_prettier_plugin_svelte = "^2.7.0";
 
 /** @type {import('$env/static/private').MANAGERPID} */
-export const MANAGERPID = "1923";
+export const MANAGERPID = "1925";
 
 /** @type {import('$env/static/private').npm_package_devDependencies_less} */
 export const npm_package_devDependencies_less = "^4.1.3";
@@ -324,7 +324,7 @@ export const which_declare = "declare -f";
 export const VSCODE_GIT_ASKPASS_MAIN = "/usr/share/code/resources/app/extensions/git/dist/askpass-main.js";
 
 /** @type {import('$env/static/private').JOURNAL_STREAM} */
-export const JOURNAL_STREAM = "8:34947";
+export const JOURNAL_STREAM = "8:33906";
 
 /** @type {import('$env/static/private').XDG_DATA_DIRS} */
 export const XDG_DATA_DIRS = "/home/patientzero/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/";
@@ -336,7 +336,7 @@ export const npm_package_scripts_check = "svelte-check --tsconfig ./tsconfig.jso
 export const GDK_BACKEND = "x11";
 
 /** @type {import('$env/static/private').PATH} */
-export const PATH = "/tmp/yarn--1659171360658-0.43818985414314704:/mnt/Z Virus/Code/ctc-sveltekit-bun/app/node_modules/.bin:/home/patientzero/.config/yarn/link/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/home/patientzero/.nvm/versions/node/v18.3.0/lib/node_modules/npm/bin/node-gyp-bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin/node_modules/npm/bin/node-gyp-bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin";
+export const PATH = "/tmp/yarn--1659566123672-0.6970742674627879:/mnt/Z Virus/Code/ctc-sveltekit-bun/app/node_modules/.bin:/home/patientzero/.config/yarn/link/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/home/patientzero/.nvm/versions/node/v18.3.0/lib/node_modules/npm/bin/node-gyp-bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin/node_modules/npm/bin/node-gyp-bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.yarn/bin:/home/patientzero/.config/yarn/global/node_modules/.bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patientzero/.bun/bin:/home/patientzero/.nvm/versions/node/v18.3.0/bin:/home/patientzero/.local/bin:/home/patientzero/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin";
 
 /** @type {import('$env/static/private').GDMSESSION} */
 export const GDMSESSION = "gnome-xorg";
@@ -372,7 +372,7 @@ export const npm_config_ignore_optional = "";
 export const npm_package_devDependencies_postcss = "^8.4.14";
 
 /** @type {import('$env/static/private').GIO_LAUNCHED_DESKTOP_FILE_PID} */
-export const GIO_LAUNCHED_DESKTOP_FILE_PID = "9731";
+export const GIO_LAUNCHED_DESKTOP_FILE_PID = "21527";
 
 /** @type {import('$env/static/private').npm_node_execpath} */
 export const npm_node_execpath = "/home/patientzero/.nvm/versions/node/v18.3.0/bin/node";

@@ -6,7 +6,7 @@ type Query {
   getCounselors: [Counselor!]!
   getSubCategories: [SubCategory!]!
   getTimeEntries: [TimeEntry!]!
-  getTimeEntriesBetweenDates(start_time: String!, end_time: String!): [TimeEntry!]!
+  getTimeEntriesBetweenDates(fk_counselor_id: String!, from_date: String!, to_date: String!): [TimeEntry!]! @resolver(name: "getTimeEntriesByDateRange")
 }
 
 ####

@@ -19,6 +19,7 @@
               <a href="/activity" class="nav-link" aria-current="page">Activity</a>
               <span class="inline-block px-1 text-white">|</span>
               <a href="/time-entry" class="nav-link" aria-current="page">Time Entry</a>
+              <a href="/report" class="nav-link" aria-current="page">Report</a>
             </div>
           </div>
         </div>
