@@ -108,4 +108,4 @@ dist
 .faunarc
 
 # SvelteKit
-.svelte-kit/
+.svelte-kit
