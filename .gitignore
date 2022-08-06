@@ -106,3 +106,6 @@ dist
 
 # Fauna connection variables file
 .faunarc
+
+# SvelteKit
+.svelte-kit/
